@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StartButton
   - ExitButton
+  - Inputfield
   layers:
   - Default
   - TransparentFX

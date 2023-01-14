@@ -45,8 +45,7 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
 
-        GameManager.Instance.FindStartButton();
-        GameManager.Instance.FindExitButton();
+        GameManager.Instance.FindMenu();
 
         anim.SetBool(LOADING, false);
     }

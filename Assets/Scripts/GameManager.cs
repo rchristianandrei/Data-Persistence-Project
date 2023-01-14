@@ -55,19 +55,34 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+    public void FindMenu()
+    {
+        FindInputfield();
+        FindStartButton();
+        FindExitButton();
+    }
 
-    public void FindStartButton()
+    private void FindInputfield()
+    {
+        GameObject input = GameObject.FindGameObjectWithTag("Inputfield");
+
+        if (input == null) return;
+
+        inputField = input.GetComponent<TMP_InputField>();
+    }
+
+    private void FindStartButton()
     {
         GameObject startButton = GameObject.FindGameObjectWithTag("StartButton");
-        if (startButton == null) { return; }
+        if (startButton == null) return;
 
         startButton.GetComponent<Button>().onClick.AddListener(LoadMainScene);
     }
 
-    public void FindExitButton()
+    private void FindExitButton()
     {
         GameObject exitBUtton = GameObject.FindGameObjectWithTag("ExitButton");
-        if (exitBUtton == null) { return; }
+        if (exitBUtton == null) return;
 
         exitBUtton.GetComponent<Button>().onClick.AddListener(ExitGame);
     }
