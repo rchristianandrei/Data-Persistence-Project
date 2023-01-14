@@ -1,5 +1,6 @@
 using System.IO;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         FindStartButton();
+        FindExitButton();
     }
 
     public void LoadMainScene()
@@ -45,12 +47,29 @@ public class GameManager : MonoBehaviour
         SceneLoader.Instance.LoadScene("main");
     }
 
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
+    }
+
     public void FindStartButton()
     {
         GameObject startButton = GameObject.FindGameObjectWithTag("StartButton");
         if (startButton == null) { return; }
 
         startButton.GetComponent<Button>().onClick.AddListener(LoadMainScene);
+    }
+
+    public void FindExitButton()
+    {
+        GameObject exitBUtton = GameObject.FindGameObjectWithTag("ExitButton");
+        if (exitBUtton == null) { return; }
+
+        exitBUtton.GetComponent<Button>().onClick.AddListener(ExitGame);
     }
 
     class SaveData

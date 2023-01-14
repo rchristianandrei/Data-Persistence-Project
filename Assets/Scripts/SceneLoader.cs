@@ -46,6 +46,7 @@ public class SceneLoader : MonoBehaviour
         }
 
         GameManager.Instance.FindStartButton();
+        GameManager.Instance.FindExitButton();
 
         anim.SetBool(LOADING, false);
     }
