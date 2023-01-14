@@ -61,7 +61,7 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
@@ -69,18 +69,28 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"{GameManager.Instance.PlayerName}'s Score : {m_Points}";
+        if (GameManager.Instance != null)
+            ScoreText.text = $"{GameManager.Instance.PlayerName}'s Score : {m_Points}";
+        else
+            ScoreText.text = $"Anon's Score : {m_Points}";
     }
 
     void DisplayBestScore()
     {
-        if (GameManager.Instance.BestScore <= 0)
+        if (GameManager.Instance != null)
         {
-            BestScoreText.text = "No Best Scorer!";
+            if (GameManager.Instance.BestScore <= 0)
+            {
+                BestScoreText.text = "No Best Scorer!";
+            }
+            else
+            {
+                BestScoreText.text = $"Best Scorer: {GameManager.Instance.BestScorer}: {GameManager.Instance.BestScore}";
+            }
         }
         else
         {
-            BestScoreText.text = $"Best Scorer: {GameManager.Instance.BestScorer}: {GameManager.Instance.BestScore}";
+            BestScoreText.text = "No Best Scorer!";
         }
     }
 
@@ -90,5 +100,18 @@ public class MainManager : MonoBehaviour
         GameManager.Instance.SaveGame(m_Points);
         GameManager.Instance.LoadGame();
         GameOverText.SetActive(true);
+    }
+
+    public void GoBackToMenu()
+    {
+        LoadScene("menu");
+    }
+
+    private void LoadScene(string name)
+    {
+        if (SceneLoader.Instance != null)
+            SceneLoader.Instance.LoadScene(name);
+        else
+            SceneManager.LoadScene(name);
     }
 }

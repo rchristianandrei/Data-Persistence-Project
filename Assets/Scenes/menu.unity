@@ -1234,8 +1234,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb87cf244b90cd54899de537bc5669a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 1955988806}
+  inputField: {fileID: 2101069343}
   PlayerName: 
+  BestScorer: 
+  BestScore: 0
+  SaveFileName: /SaveFile.json
 --- !u!1 &1864641163
 GameObject:
   m_ObjectHideFlags: 0

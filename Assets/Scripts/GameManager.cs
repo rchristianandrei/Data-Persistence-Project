@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private TextMeshProUGUI inputField;
+    [SerializeField] private TMP_InputField inputField;
 
-    [HideInInspector] public string PlayerName = "";
+    [HideInInspector] public string PlayerName = "Anon";
     [HideInInspector] public string BestScorer;
     [HideInInspector] public int BestScore = 0;
 
@@ -35,7 +35,13 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainScene()
     {
-        PlayerName = inputField.text;
+        string temp = inputField.text;
+
+        if (!string.IsNullOrEmpty(temp))
+            PlayerName = temp;
+        else
+            PlayerName = "Anon";
+
         SceneLoader.Instance.LoadScene("main");
     }
 
